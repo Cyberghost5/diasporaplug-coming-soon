@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Policy & Preferences — DiasporaPlug EU</title>
+  <meta name="description" content="Manage cookie settings and learn about how DiasporaPlug EU respects your browser privacy.">
+  <meta name="theme-color" content="#04090d">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#0E6E85',
+              'teal-light': '#179bb8',
+              cyan: '#22d3ee',
+              orange: '#F15A24',
+              'orange-glow': '#ff7843',
+              dark: '#04080c',
+              card: '#08131a',
+              border: '#132833'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            mono: ['Space Grotesk', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .glass-panel {
+      background: rgba(8, 19, 26, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-orange selection:text-white">
+
+  <!-- Minimal Header -->
+  <header class="border-b border-white/[0.08] bg-brand-dark/80 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-8 h-8 rounded-xl overflow-hidden p-0.5 bg-gradient-to-br from-brand-teal to-brand-orange shadow-md">
+          <img src="assets/logo.svg" onerror="this.src='assets/logo.jpg'" alt="DiasporaPlug EU Logo" class="w-full h-full object-contain bg-brand-dark rounded-[10px] p-0.5">
+        </div>
+        <div class="flex items-center gap-1 leading-none">
+          <span class="font-heading font-extrabold text-base tracking-tight text-white">DIASPORA</span>
+          <span class="font-heading font-extrabold text-base tracking-tight text-brand-orange">PLUG</span>
+          <span class="ml-1 text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-brand-teal/30 text-brand-cyan border border-brand-teal/50">EU</span>
+        </div>
+      </a>
+
+      <a href="index.html" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-white px-3.5 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Back to Waitlist</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    
+    <div class="mb-10 pb-8 border-b border-white/[0.08]">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/40 text-xs font-mono font-bold uppercase tracking-wider mb-4">
+        <i data-lucide="cookie" class="w-3.5 h-3.5"></i>
+        EU ePrivacy & Cookie Directive
+      </div>
+      <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-white tracking-tight mb-2">Cookie Preferences & Policy</h1>
+      <p class="text-sm text-slate-400">DiasporaPlug EU values your digital privacy. Control your cookie settings below.</p>
+    </div>
+
+    <!-- Interactive Cookie Preferences Box -->
+    <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-brand-teal/40 mb-10 shadow-2xl">
+      <h2 class="font-heading font-bold text-xl text-white mb-2">Your Privacy Preferences</h2>
+      <p class="text-xs sm:text-sm text-slate-300 mb-6">
+        Under EU privacy law (ePrivacy Directive & GDPR), we strictly limit our cookie usage. You can review and adjust your preference categories at any time.
+      </p>
+
+      <div class="space-y-4">
+        
+        <!-- Essential Cookies -->
+        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-white">Essential & Functional Cookies</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30">Always Active</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Strictly necessary for security, CSRF protection, and preserving your waitlist registration state.
+            </p>
+          </div>
+          <div class="text-xs font-mono text-slate-400 shrink-0">Required</div>
+        </div>
+
+        <!-- Analytics Cookies -->
+        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-white">Privacy-First Analytics</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-teal/20 text-brand-cyan border border-brand-teal/40">Optional</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-1">
+              Aggregated, anonymized statistics (no cross-site tracking or advertising profiling) to help us optimize UI animations.
+            </p>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
+            <input type="checkbox" id="analytics-toggle" checked class="sr-only peer">
+            <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-orange"></div>
+          </label>
+        </div>
+
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-end gap-3 mt-8 pt-6 border-t border-white/[0.08]">
+        <button onclick="savePreferences()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-brand-orange to-brand-orange-glow text-white font-bold text-xs shadow-lg shadow-brand-orange/30 hover:scale-105 transition-transform">
+          Save Cookie Preferences
+        </button>
+      </div>
+
+      <div id="save-feedback" class="hidden mt-3 text-xs text-emerald-400 text-center font-medium flex items-center justify-center gap-1.5">
+        <i data-lucide="check" class="w-4 h-4"></i>
+        <span>Preferences successfully saved in your browser!</span>
+      </div>
+
+    </div>
+
+    <!-- Back to Waitlist CTA -->
+    <div class="text-center">
+      <a href="index.html#waitlist-section" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/[0.05] hover:bg-white/[0.1] text-white font-heading font-semibold text-xs border border-white/10 transition-colors">
+        <span>Return to Waitlist</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="border-t border-white/[0.06] bg-brand-dark py-6 text-center text-xs text-slate-400">
+    <p>© 2026 DiasporaPlug EU. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+    });
+
+    function savePreferences() {
+      const fb = document.getElementById('save-feedback');
+      fb.classList.remove('hidden');
+      setTimeout(() => {
+        fb.classList.add('hidden');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

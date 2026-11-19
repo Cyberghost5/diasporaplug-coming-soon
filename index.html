@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiasporaPlug EU — Trusted Artisans. One Simple Subscription.</title>
+  <meta name="description" content="Connecting the diaspora in the EU with trusted, verified artisan services including native cooks, master barbers, bespoke tailors, private drivers, carpenters, and logistics.">
+  <meta name="theme-color" content="#04090d">
+
+  <!-- Favicon / Logo -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="alternate icon" type="image/jpeg" href="assets/logo.jpg">
+
+  <!-- Google Fonts: Plus Jakarta Sans (Headings), Space Grotesk, Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#0E6E85',      // Official Logo Deep Teal
+              'teal-light': '#179bb8',
+              'teal-dark': '#094a5a',
+              cyan: '#22d3ee',      // Electric accent
+              orange: '#F15A24',    // Official Logo Vibrant Orange
+              'orange-glow': '#ff7843',
+              'orange-dark': '#c84414',
+              amber: '#F59E0B',
+              dark: '#04080c',      // Midnight Obsidian Base
+              card: '#08131a',      // Surface Dark
+              border: '#132833'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            mono: ['Space Grotesk', 'monospace']
+          },
+          animation: {
+            'float-slow': 'float 7s ease-in-out infinite',
+            'float-medium': 'float 5s ease-in-out infinite',
+            'float-fast': 'float 4s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+            'orb-drift-1': 'orbDrift1 20s ease-in-out infinite alternate',
+            'orb-drift-2': 'orbDrift2 25s ease-in-out infinite alternate',
+            'shimmer': 'shimmer 2.5s infinite linear',
+            'marquee': 'marquee 32s linear infinite',
+            'marquee-reverse': 'marqueeReverse 32s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-12px) rotate(1deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+              '50%': { opacity: '1', transform: 'scale(1.05)' },
+            },
+            orbDrift1: {
+              '0%': { transform: 'translate(0, 0) scale(1)' },
+              '50%': { transform: 'translate(80px, 60px) scale(1.15)' },
+              '100%': { transform: 'translate(-50px, 100px) scale(0.95)' }
+            },
+            orbDrift2: {
+              '0%': { transform: 'translate(0, 0) scale(1)' },
+              '50%': { transform: 'translate(-90px, -70px) scale(1.2)' },
+              '100%': { transform: 'translate(60px, -40px) scale(0.9)' }
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' }
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' }
+            },
+            marqueeReverse: {
+              '0%': { transform: 'translateX(-50%)' },
+              '100%': { transform: 'translateX(0%)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* Custom Smooth Scroll & Selection */
+    ::selection {
+      background-color: #F15A24;
+      color: #ffffff;
+    }
+    
+    /* Noise Background Overlay */
+    .bg-noise {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+
+    /* Ambient Subtle Grid Pattern */
+    .bg-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 60%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 60%, transparent 100%);
+    }
+
+    /* Glassmorphism Styles */
+    .glass-panel {
+      background: rgba(8, 19, 26, 0.68);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-card {
+      background: rgba(9, 21, 29, 0.65);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(14, 110, 133, 0.22);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(241, 90, 36, 0.45);
+      box-shadow: 0 25px 50px -12px rgba(241, 90, 36, 0.15), 0 0 30px rgba(14, 110, 133, 0.1);
+      transform: translateY(-4px);
+    }
+
+    /* Dynamic Cursor Spotlight Effect for Bento Cards */
+    .spotlight-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(241, 90, 36, 0.12), transparent 45%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Gradient Text Highlights */
+    .text-gradient-brand {
+      background: linear-gradient(135deg, #ffffff 25%, #22d3ee 65%, #F15A24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-orange {
+      background: linear-gradient(135deg, #F15A24 0%, #FF8A48 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-teal {
+      background: linear-gradient(135deg, #22d3ee 0%, #0E6E85 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Magnetic CTA Glow */
+    .btn-glow-orange {
+      background: linear-gradient(135deg, #F15A24 0%, #EA580C 100%);
+      box-shadow: 0 0 25px rgba(241, 90, 36, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-glow-orange:hover {
+      box-shadow: 0 0 38px rgba(241, 90, 36, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* Button Shimmer Overlay */
+    .shimmer-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 70%
+      );
+      transform: rotate(30deg) translateX(-150%);
+      transition: transform 0.8s ease;
+    }
+    .shimmer-btn:hover::after {
+      transform: rotate(30deg) translateX(150%);
+    }
+
+    /* Hide scrollbars but keep functionality */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Marquee fade masks */
+    .marquee-mask {
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-slate-100 font-sans antialiased overflow-x-hidden relative selection:bg-brand-orange selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- ATMOSPHERE & BACKGROUND LAYER                                             -->
+  <!-- ========================================================================= -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <!-- SVG Noise Layer -->
+    <div class="absolute inset-0 bg-noise z-10"></div>
+    
+    <!-- Subtle Grid Overlay -->
+    <div class="absolute inset-0 bg-grid z-0"></div>
+
+    <!-- Drifting Ambient Mesh Gradient Orbs -->
+    <!-- Orb 1: Brand Deep Teal (Top Left) -->
+    <div class="absolute -top-[120px] -left-[100px] w-[650px] h-[650px] rounded-full bg-brand-teal/25 blur-[120px] animate-orb-drift-1"></div>
+    
+    <!-- Orb 2: Brand Vibrant Orange (Top Right & Hero Glow) -->
+    <div class="absolute top-[8%] -right-[120px] w-[580px] h-[580px] rounded-full bg-brand-orange/20 blur-[130px] animate-orb-drift-2"></div>
+    
+    <!-- Orb 3: Electric Cyan (Center Mid) -->
+    <div class="absolute top-[45%] left-[25%] w-[480px] h-[480px] rounded-full bg-brand-cyan/15 blur-[140px] animate-pulse-glow"></div>
+    
+    <!-- Orb 4: Deep Terracotta Orange (Bottom Right Bento) -->
+    <div class="absolute bottom-[10%] -left-[100px] w-[600px] h-[600px] rounded-full bg-brand-orange/15 blur-[140px] animate-orb-drift-1"></div>
+
+    <!-- Radial Dark Vignette -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/40 to-brand-dark/95 z-10"></div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 1. MINIMALIST FLOATING NAVBAR                                             -->
+  <!-- ========================================================================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 py-4 transition-all duration-300" id="main-nav">
+    <div class="max-w-7xl mx-auto">
+      <div class="glass-panel rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between border border-white/10 shadow-2xl backdrop-blur-xl">
+        
+        <!-- Brand Logo & Identity -->
+        <a href="#hero-section" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brand-orange/50 rounded-lg">
+          <!-- Logo Mark / Icon with Exact Colors -->
+          <div class="relative w-10 h-10 rounded-xl overflow-hidden shadow-lg p-0.5 bg-gradient-to-br from-brand-teal to-brand-orange/80 group-hover:scale-105 transition-transform duration-300">
+            <div class="w-full h-full rounded-[10px] overflow-hidden bg-brand-dark flex items-center justify-center relative">
+              <img src="assets/logo.svg" onerror="this.src='assets/logo.jpg'" alt="DiasporaPlug EU Logo" class="w-full h-full object-contain p-0.5">
+            </div>
+            <div class="absolute -inset-0.5 rounded-xl bg-brand-orange/30 blur-sm -z-10 group-hover:bg-brand-orange/60 transition-colors"></div>
+          </div>
+
+          <!-- Brand Typography -->
+          <div class="flex flex-col">
+            <div class="flex items-center gap-1.5 leading-none">
+              <span class="font-heading font-extrabold text-lg tracking-tight text-white group-hover:text-slate-100">DIASPORA</span>
+              <span class="font-heading font-extrabold text-lg tracking-tight text-brand-orange">PLUG</span>
+              <span class="ml-1 text-[11px] font-mono font-bold px-1.5 py-0.5 rounded bg-brand-teal/30 text-brand-cyan border border-brand-teal/50">EU</span>
+            </div>
+            <span class="text-[9px] font-mono tracking-widest text-slate-400 uppercase hidden sm:block">Afro-European Growth Network</span>
+          </div>
+        </a>
+
+        <!-- Center: Pulsing Live Status Badge (Interactive shortcut to EU coverage) -->
+        <button type="button" onclick="scrollToBentoCard('bento-eu')" class="hidden md:flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-brand-card/80 border border-brand-teal/30 shadow-inner hover:border-brand-orange/50 transition-colors cursor-pointer text-left">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          <span class="text-xs font-medium text-slate-300">Launching Soon Across the <span class="text-white font-semibold">EU</span></span>
+          <span class="w-1 h-1 rounded-full bg-slate-600"></span>
+          <span class="text-[11px] font-mono text-brand-cyan bg-brand-teal/20 px-2 py-0.5 rounded-full border border-brand-cyan/20">Q2 2026</span>
+        </button>
+
+        <!-- Right: Action CTA -->
+        <div class="flex items-center gap-3">
+          <!-- Live Waitlist Count Preview Pill -->
+          <div class="hidden lg:flex items-center gap-2 text-xs font-mono text-slate-400 px-3 py-1.5 rounded-xl bg-white/[0.03] border border-white/5">
+            <i data-lucide="users" class="w-3.5 h-3.5 text-brand-orange"></i>
+            <span id="nav-waitlist-count" class="text-white font-bold">1,428</span>
+            <span>joined</span>
+          </div>
+
+          <!-- Smooth Scroll to Waitlist CTA -->
+          <a href="#waitlist-section" class="relative group overflow-hidden px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-brand-teal to-brand-teal-light hover:from-brand-teal-light hover:to-brand-orange transition-all duration-300 shadow-lg shadow-brand-teal/20 hover:shadow-brand-orange/30 flex items-center gap-2">
+            <span>Join Waitlist</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 2. HERO SECTION (ABOVE THE FOLD)                                          -->
+  <!-- ========================================================================= -->
+  <section class="relative z-10 pt-32 sm:pt-36 lg:pt-40 pb-20 sm:pb-28 overflow-hidden" id="hero-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Center Content Column -->
+      <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
+
+        <!-- Eyebrow Badge -->
+        <div id="hero-badge" class="opacity-0 translate-y-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-brand-teal/20 via-brand-card to-brand-orange/20 border border-brand-teal/40 backdrop-blur-md mb-6 shadow-lg shadow-brand-teal/10">
+          <span class="flex items-center justify-center w-5 h-5 rounded-full bg-brand-orange/20 text-brand-orange">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          </span>
+          <span class="text-xs sm:text-sm font-semibold tracking-wide text-slate-200">
+            The Diaspora Service Club <span class="text-brand-orange">•</span> EU
+          </span>
+          <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-brand-orange/20 text-brand-orange font-bold uppercase tracking-wider border border-brand-orange/30">
+            Exclusive
+          </span>
+        </div>
+
+        <!-- High-Impact Main Headline -->
+        <h1 id="hero-headline" class="opacity-0 translate-y-6 font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-6 text-white">
+          Trusted Artisans. <br>
+          <span class="text-gradient-brand">One Simple Subscription.</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p id="hero-subheadline" class="opacity-0 translate-y-6 text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl mb-10">
+          Book vetted African & Caribbean cooks, master barbers, bespoke tailors, private drivers, carpenters, and express logistics across Europe—without the guesswork, random WhatsApp groups, or hidden markups.
+        </p>
+
+        <!-- Waitlist Capture Form (Glassmorphic) -->
+        <div id="hero-form-container" class="opacity-0 translate-y-6 w-full max-w-xl mx-auto mb-6">
+          <div class="glass-panel p-2 sm:p-2.5 rounded-2xl sm:rounded-3xl border border-brand-teal/40 shadow-2xl relative group focus-within:border-brand-orange focus-within:ring-2 focus-within:ring-brand-orange/30 transition-all duration-300" id="waitlist-section">
+            
+            <form id="waitlist-form" class="flex flex-col sm:flex-row items-stretch gap-2" onsubmit="handleWaitlistSubmit(event)">
+              
+              <!-- Email Input Field -->
+              <div class="relative flex-1 flex items-center">
+                <div class="absolute left-4 text-slate-400 group-focus-within:text-brand-orange transition-colors">
+                  <i data-lucide="mail" class="w-5 h-5"></i>
+                </div>
+                <input 
+                  type="email" 
+                  id="waitlist-email" 
+                  required 
+                  placeholder="Enter your email address..."
+                  class="w-full bg-brand-dark/70 text-white placeholder-slate-400 text-sm sm:text-base pl-12 pr-4 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl border border-white/10 focus:outline-none focus:border-brand-teal transition-all"
+                  autocomplete="email"
+                >
+              </div>
+
+              <!-- City Select Dropdown (Optional Touch for EU Diaspora Personalization) -->
+              <div class="relative hidden sm:block w-36">
+                <select id="waitlist-city" class="w-full h-full bg-brand-dark/70 text-slate-200 text-xs font-medium pl-3 pr-8 py-3.5 rounded-xl border border-white/10 focus:outline-none focus:border-brand-teal appearance-none cursor-pointer">
+                  <option value="Berlin">🇩🇪 Berlin</option>
+                  <option value="Paris" selected>🇫🇷 Paris</option>
+                  <option value="Amsterdam">🇳🇱 Amsterdam</option>
+                  <option value="Brussels">🇧🇪 Brussels</option>
+                  <option value="London">🇬🇧 London</option>
+                  <option value="Frankfurt">🇩🇪 Frankfurt</option>
+                  <option value="Dublin">🇮🇪 Dublin</option>
+                  <option value="Other">🇪🇺 Other EU</option>
+                </select>
+                <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                  <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                </div>
+              </div>
+
+              <!-- Glowing Magnetic CTA Button -->
+              <button 
+                type="submit" 
+                id="waitlist-submit-btn" 
+                class="shimmer-btn relative overflow-hidden btn-glow-orange px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl text-white font-heading font-bold text-sm sm:text-base flex items-center justify-center gap-2 group whitespace-nowrap cursor-pointer active:scale-95"
+              >
+                <span id="btn-text">Join the Waitlist</span>
+                <i data-lucide="arrow-right" id="btn-icon" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                
+                <!-- Loading Spinner (Hidden by default) -->
+                <svg id="btn-spinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </button>
+
+            </form>
+
+            <!-- Subtle Error Message Area -->
+            <p id="form-error-msg" class="hidden text-xs text-rose-400 font-medium mt-2 text-left pl-3 flex items-center gap-1.5">
+              <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+              <span>Please enter a valid email address.</span>
+            </p>
+
+          </div>
+
+          <!-- Early Access Value Prop Note -->
+          <div class="flex items-center justify-center gap-2 mt-3 text-xs sm:text-sm text-slate-400 font-medium">
+            <span class="text-brand-orange">✨</span>
+            <span>Get early access + <strong class="text-white font-semibold">30% off</strong> your first 3 months.</span>
+            <span class="hidden sm:inline text-slate-500">•</span>
+            <span class="hidden sm:inline text-slate-400">Zero spam, unsubscribe anytime.</span>
+          </div>
+
+          <!-- Live Social Proof Counter -->
+          <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <div class="flex -space-x-2 overflow-hidden">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-brand-dark object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Member">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-brand-dark object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Member">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-brand-dark object-cover" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" alt="Member">
+              <img class="inline-block h-8 w-8 rounded-full ring-2 ring-brand-dark object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Member">
+            </div>
+            <div class="text-xs text-slate-300 font-medium">
+              <span class="text-brand-orange font-bold text-sm">3,420+</span> members joined in <span class="text-white font-semibold">12 EU cities</span>
+            </div>
+            <div class="hidden sm:flex items-center gap-1 text-amber-400 text-xs">
+              <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+              <span class="font-bold text-white">4.9/5</span>
+              <span class="text-slate-400">(Artisan Quality Score)</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- HERO VISUAL: FLOATING LIVE-STYLE GLASS MOCKUP CARDS                   -->
+      <!-- ===================================================================== -->
+      <div id="hero-cards-container" class="opacity-0 translate-y-10 relative mt-8 lg:mt-12 max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+
+          <!-- Card 1: Verified Tailor (Berlin) -->
+          <div class="glass-card rounded-2xl p-4 sm:p-5 relative animate-float-slow hover:border-brand-orange/60">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <div class="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-brand-orange/40">
+                  <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=120&q=80" alt="Tailor" class="w-full h-full object-cover">
+                  <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-brand-dark"></span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="font-heading font-bold text-sm text-white">Chidinma O.</h3>
+                    <i data-lucide="badge-check" class="w-4 h-4 text-brand-orange fill-brand-orange/20"></i>
+                  </div>
+                  <p class="text-xs text-slate-400">Bespoke Tailor • Berlin 🇩🇪</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-1 bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-400/20 text-amber-400 text-xs font-mono font-bold">
+                <i data-lucide="star" class="w-3 h-3 fill-amber-400"></i>
+                <span>4.9</span>
+              </div>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between text-slate-300 bg-white/[0.03] p-2 rounded-lg">
+                <span class="flex items-center gap-1.5 text-slate-400">
+                  <i data-lucide="scissors" class="w-3.5 h-3.5 text-brand-cyan"></i>
+                  Aso-Ebi & Kente Fitting
+                </span>
+                <span class="text-emerald-400 font-medium">Available Today</span>
+              </div>
+              <div class="flex items-center justify-between pt-1 text-[11px] font-mono">
+                <span class="text-slate-400">Diaspora Member Rate:</span>
+                <span class="text-white font-bold bg-brand-teal/30 px-2 py-0.5 rounded border border-brand-teal/40">€35/hr <s class="text-slate-500 font-normal text-[10px]">€55</s></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Private Chef (Paris) — Centerpiece High Impact -->
+          <div class="glass-card rounded-2xl p-4 sm:p-5 relative animate-float-medium border-brand-orange/30 shadow-brand-orange/10 hover:border-brand-orange/70">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-orange to-brand-orange-glow text-white text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-0.5 rounded-full shadow-md flex items-center gap-1">
+              <i data-lucide="flame" class="w-3 h-3"></i> Top Booked in Paris
+            </div>
+
+            <div class="flex items-start justify-between mb-3 mt-1">
+              <div class="flex items-center gap-3">
+                <div class="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-brand-teal/60">
+                  <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=120&q=80" alt="Chef" class="w-full h-full object-cover">
+                  <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-brand-dark"></span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="font-heading font-bold text-sm text-white">Chef Kofi Mensah</h3>
+                    <i data-lucide="badge-check" class="w-4 h-4 text-brand-cyan fill-brand-cyan/20"></i>
+                  </div>
+                  <p class="text-xs text-slate-400">Afro-Fusion Private Chef • Paris 🇫🇷</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-1 bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-400/20 text-amber-400 text-xs font-mono font-bold">
+                <i data-lucide="star" class="w-3 h-3 fill-amber-400"></i>
+                <span>5.0</span>
+              </div>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between text-slate-300 bg-white/[0.03] p-2 rounded-lg">
+                <span class="flex items-center gap-1.5 text-slate-400">
+                  <i data-lucide="utensils" class="w-3.5 h-3.5 text-brand-orange"></i>
+                  Authentic Jollof & Suya Grill
+                </span>
+                <span class="text-brand-orange font-semibold flex items-center gap-1">
+                  <i data-lucide="check-circle" class="w-3 h-3"></i> Booked Sat
+                </span>
+              </div>
+              <div class="flex items-center justify-between pt-1 text-[11px] font-mono">
+                <span class="text-slate-400">Subscription Perk:</span>
+                <span class="text-emerald-400 font-bold">0% Booking Fees</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Logistics Van (Amsterdam) -->
+          <div class="glass-card rounded-2xl p-4 sm:p-5 relative animate-float-fast hover:border-brand-teal/60">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <div class="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-brand-cyan/40">
+                  <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80" alt="Logistics" class="w-full h-full object-cover">
+                  <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-brand-dark"></span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="font-heading font-bold text-sm text-white">Mamadou D.</h3>
+                    <i data-lucide="badge-check" class="w-4 h-4 text-brand-teal fill-brand-teal/20"></i>
+                  </div>
+                  <p class="text-xs text-slate-400">Express Cargo Van • Amsterdam 🇳🇱</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-1 bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-400/20 text-amber-400 text-xs font-mono font-bold">
+                <i data-lucide="star" class="w-3 h-3 fill-amber-400"></i>
+                <span>4.9</span>
+              </div>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between text-slate-300 bg-white/[0.03] p-2 rounded-lg">
+                <span class="flex items-center gap-1.5 text-slate-400">
+                  <i data-lucide="truck" class="w-3.5 h-3.5 text-brand-cyan"></i>
+                  AMS ➔ Brussels Relocation
+                </span>
+                <span class="text-cyan-400 font-medium flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> En Route
+                </span>
+              </div>
+              <div class="flex items-center justify-between pt-1 text-[11px] font-mono">
+                <span class="text-slate-400">Protection:</span>
+                <span class="text-white font-medium">100% Insured Transit</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3. INFINITE ANIMATED SERVICE MARQUEE                                      -->
+  <!-- ========================================================================= -->
+  <section class="relative z-10 py-10 border-y border-white/[0.06] bg-brand-dark/50 backdrop-blur-md overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 mb-4 text-center">
+      <span class="text-xs font-mono uppercase tracking-widest text-slate-400">
+        • Core Artisan Services Vetted For The Diaspora •
+      </span>
+    </div>
+
+    <!-- Continuous Marquee Track -->
+    <div class="marquee-mask relative w-full overflow-hidden flex py-2">
+      <!-- First Track -->
+      <div class="flex items-center gap-4 sm:gap-6 whitespace-nowrap animate-marquee shrink-0">
+        
+        <!-- Service 1: Cooks & Catering -->
+        <div onclick="scrollToArtisanCategory('cooks')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center">
+            <i data-lucide="chef-hat" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Cooks & Catering</h4>
+            <p class="text-[11px] text-slate-400">Native Chefs & Event Suya</p>
+          </div>
+        </div>
+
+        <!-- Service 2: Master Barbers -->
+        <div onclick="scrollToArtisanCategory('barbers')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center">
+            <i data-lucide="scissors" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Master Barbers</h4>
+            <p class="text-[11px] text-slate-400">Crisp Fades & Afro Sculpting</p>
+          </div>
+        </div>
+
+        <!-- Service 3: Bespoke Tailors -->
+        <div onclick="scrollToArtisanCategory('tailors')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Bespoke Tailors</h4>
+            <p class="text-[11px] text-slate-400">Ankara, Kente & Modern Cuts</p>
+          </div>
+        </div>
+
+        <!-- Service 4: Private Drivers -->
+        <div onclick="scrollToArtisanCategory('drivers')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center">
+            <i data-lucide="car" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Private Drivers</h4>
+            <p class="text-[11px] text-slate-400">Airport Chauffeurs & VIP</p>
+          </div>
+        </div>
+
+        <!-- Service 5: Express Logistics -->
+        <div onclick="scrollToArtisanCategory('logistics')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center">
+            <i data-lucide="truck" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Express Logistics</h4>
+            <p class="text-[11px] text-slate-400">Inter-city Relocation & Vans</p>
+          </div>
+        </div>
+
+        <!-- Service 6: Skilled Carpenters -->
+        <div onclick="scrollToArtisanCategory('carpenters')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center">
+            <i data-lucide="hammer" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Skilled Carpenters</h4>
+            <p class="text-[11px] text-slate-400">Custom Woodwork & Assembly</p>
+          </div>
+        </div>
+
+        <!-- Service 7: Home Repairs -->
+        <div onclick="scrollToArtisanCategory('all')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center">
+            <i data-lucide="wrench" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Home Repairs</h4>
+            <p class="text-[11px] text-slate-400">Verified Handymen & Electric</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Second Duplicate Track for Seamless Infinite Loop -->
+      <div class="flex items-center gap-4 sm:gap-6 whitespace-nowrap animate-marquee shrink-0" aria-hidden="true">
+        
+        <!-- Service 1: Cooks & Catering -->
+        <div onclick="scrollToArtisanCategory('cooks')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center">
+            <i data-lucide="chef-hat" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Cooks & Catering</h4>
+            <p class="text-[11px] text-slate-400">Native Chefs & Event Suya</p>
+          </div>
+        </div>
+
+        <!-- Service 2: Master Barbers -->
+        <div onclick="scrollToArtisanCategory('barbers')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center">
+            <i data-lucide="scissors" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Master Barbers</h4>
+            <p class="text-[11px] text-slate-400">Crisp Fades & Afro Sculpting</p>
+          </div>
+        </div>
+
+        <!-- Service 3: Bespoke Tailors -->
+        <div onclick="scrollToArtisanCategory('tailors')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Bespoke Tailors</h4>
+            <p class="text-[11px] text-slate-400">Ankara, Kente & Modern Cuts</p>
+          </div>
+        </div>
+
+        <!-- Service 4: Private Drivers -->
+        <div onclick="scrollToArtisanCategory('drivers')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center">
+            <i data-lucide="car" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Private Drivers</h4>
+            <p class="text-[11px] text-slate-400">Airport Chauffeurs & VIP</p>
+          </div>
+        </div>
+
+        <!-- Service 5: Express Logistics -->
+        <div onclick="scrollToArtisanCategory('logistics')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center">
+            <i data-lucide="truck" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Express Logistics</h4>
+            <p class="text-[11px] text-slate-400">Inter-city Relocation & Vans</p>
+          </div>
+        </div>
+
+        <!-- Service 6: Skilled Carpenters -->
+        <div onclick="scrollToArtisanCategory('carpenters')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center">
+            <i data-lucide="hammer" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Skilled Carpenters</h4>
+            <p class="text-[11px] text-slate-400">Custom Woodwork & Assembly</p>
+          </div>
+        </div>
+
+        <!-- Service 7: Home Repairs -->
+        <div onclick="scrollToArtisanCategory('all')" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass-panel border border-brand-teal/30 hover:border-brand-orange/60 transition-all cursor-pointer hover:scale-105">
+          <div class="w-8 h-8 rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center">
+            <i data-lucide="wrench" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="font-heading font-bold text-sm text-white">Home Repairs</h4>
+            <p class="text-[11px] text-slate-400">Verified Handymen & Electric</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. BENTO GRID — "WHAT WE'RE BUILDING"                                     -->
+  <!-- ========================================================================= -->
+  <section class="relative z-10 py-24 sm:py-32" id="bento-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-teal/20 border border-brand-teal/40 text-brand-cyan text-xs font-mono font-bold tracking-wider uppercase mb-4">
+          <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+          The DiasporaPlug Advantage
+        </div>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight leading-tight">
+          Crafted for Convenience. <br>
+          <span class="text-gradient-orange">Backed by Culture & Trust.</span>
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-300">
+          We’re ending the era of unverified recommendations, unreliable schedules, and price gouging with an all-inclusive membership.
+        </p>
+      </div>
+
+      <!-- Asymmetric 4-Card Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- =================================================================== -->
+        <!-- CARD 1 (LARGE): ALL-IN-ONE SUBSCRIPTION                             -->
+        <!-- =================================================================== -->
+        <div id="bento-subscription" class="bento-card spotlight-card md:col-span-2 glass-card rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between border-brand-teal/30 hover:border-brand-orange/50 relative overflow-hidden group">
+          <!-- Ambient Background Accent Glow -->
+          <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-orange/15 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-orange/25 transition-all duration-500"></div>
+          
+          <div>
+            <!-- Pill / Icon -->
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-orange to-brand-orange-dark flex items-center justify-center text-white shadow-lg shadow-brand-orange/30">
+                <i data-lucide="credit-card" class="w-6 h-6"></i>
+              </div>
+              <span class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-brand-teal/30 text-brand-cyan border border-brand-teal/50">
+                Founding Member Privilege
+              </span>
+            </div>
+
+            <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white mb-3">
+              All-in-One Subscription
+            </h3>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
+              Pay one predictable monthly fee for priority booking access, zero hidden commission fees, and exclusive member-only hourly rates across all artisan categories.
+            </p>
+          </div>
+
+          <!-- Interactive Subscription Perks Comparison Visual -->
+          <div class="mt-8 pt-6 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-3 gap-4">
+            
+            <div class="bg-brand-dark/60 p-4 rounded-2xl border border-white/5">
+              <div class="text-brand-orange font-heading font-extrabold text-xl mb-1">0%</div>
+              <div class="text-xs font-semibold text-white">Booking Fees</div>
+              <p class="text-[11px] text-slate-400 mt-1">Never pay inflated 25% middleman fees on repairs or catering.</p>
+            </div>
+
+            <div class="bg-brand-dark/60 p-4 rounded-2xl border border-white/5">
+              <div class="text-brand-cyan font-heading font-extrabold text-xl mb-1">Priority</div>
+              <div class="text-xs font-semibold text-white">Weekend Slots</div>
+              <p class="text-[11px] text-slate-400 mt-1">First-dibs on high-demand holiday braids, event cooking, and van moves.</p>
+            </div>
+
+            <div class="bg-brand-dark/60 p-4 rounded-2xl border border-white/5">
+              <div class="text-emerald-400 font-heading font-extrabold text-xl mb-1">100%</div>
+              <div class="text-xs font-semibold text-white">Satisfaction Vault</div>
+              <p class="text-[11px] text-slate-400 mt-1">Escrow payment hold until service is delivered to standard.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- CARD 2: 100% VETTED ARTISANS                                       -->
+        <!-- =================================================================== -->
+        <div id="bento-kyc" class="bento-card spotlight-card md:col-span-1 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-brand-teal/30 hover:border-brand-teal/60 relative overflow-hidden group">
+          <!-- Background Glow -->
+          <div class="absolute -top-20 -left-20 w-64 h-64 bg-brand-teal/20 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-teal/30 transition-all duration-500"></div>
+
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-teal to-brand-teal-light flex items-center justify-center text-white shadow-lg shadow-brand-teal/30 mb-6">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+
+            <h3 class="font-heading font-bold text-xl sm:text-2xl text-white mb-3">
+              100% Vetted Artisans
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              Rigorous KYC background verification, skill demonstration, and peer audits. Artisans who truly understand your culture, hair texture, spices, and standards.
+            </p>
+          </div>
+
+          <!-- Dynamic Verification Checklist Visual -->
+          <div class="space-y-2.5 bg-brand-dark/60 p-4 rounded-2xl border border-white/5">
+            <div class="flex items-center gap-2.5 text-xs text-slate-200">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+              <span>Government ID & EU Work Rights</span>
+            </div>
+            <div class="flex items-center gap-2.5 text-xs text-slate-200">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+              <span>Cultural Craft Assessment</span>
+            </div>
+            <div class="flex items-center gap-2.5 text-xs text-slate-200">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+              <span>Community Peer Endorsed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- CARD 3: BUILT FOR THE EU DIASPORA                                  -->
+        <!-- =================================================================== -->
+        <div id="bento-eu" class="bento-card spotlight-card md:col-span-1 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-brand-teal/30 hover:border-brand-teal/60 relative overflow-hidden group">
+          <!-- Background Glow -->
+          <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-brand-cyan/15 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-cyan/25 transition-all duration-500"></div>
+
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-teal-dark to-brand-teal flex items-center justify-center text-brand-cyan shadow-lg shadow-brand-teal/30 mb-6 border border-brand-cyan/30">
+              <i data-lucide="globe" class="w-6 h-6"></i>
+            </div>
+
+            <h3 class="font-heading font-bold text-xl sm:text-2xl text-white mb-3">
+              Built for the EU Diaspora
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+              Instant EUR pricing with SEPA, iDEAL, Bancontact, Cartes Bancaires, and Apple Pay. Geolocation matching across Paris, Berlin, Amsterdam, Brussels & London.
+            </p>
+          </div>
+
+          <!-- Active City Presence Pills -->
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[11px] font-mono text-slate-300 border border-white/5">🇫🇷 Paris</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[11px] font-mono text-slate-300 border border-white/5">🇩🇪 Berlin</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[11px] font-mono text-slate-300 border border-white/5">🇳🇱 Amsterdam</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[11px] font-mono text-slate-300 border border-white/5">🇧🇪 Brussels</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] text-[11px] font-mono text-slate-300 border border-white/5">🇬🇧 London</span>
+            <span class="px-2.5 py-1 rounded-lg bg-brand-orange/20 text-[11px] font-mono text-brand-orange border border-brand-orange/30 font-bold">+7 More</span>
+          </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- CARD 4 (WIDE): BOOK IN SECONDS                                     -->
+        <!-- =================================================================== -->
+        <div id="bento-booking" class="bento-card spotlight-card md:col-span-2 glass-card rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between border-brand-teal/30 hover:border-brand-orange/50 relative overflow-hidden group">
+          <!-- Background Glow -->
+          <div class="absolute -top-20 right-0 w-80 h-80 bg-brand-orange/15 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-orange/25 transition-all duration-500"></div>
+
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-orange to-amber-500 flex items-center justify-center text-white shadow-lg shadow-brand-orange/30 mb-4">
+                <i data-lucide="zap" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white mb-2">
+                Book in Seconds
+              </h3>
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-md">
+                Schedule a master barber, tailor, or moving van with real-time slot calendar, direct in-app messaging, and GPS live status tracking.
+              </p>
+            </div>
+
+            <!-- In-App Interactive Chat & Booking Mini Mockup -->
+            <div class="w-full md:w-72 bg-brand-dark/80 rounded-2xl p-3.5 border border-white/10 shadow-xl space-y-3 shrink-0">
+              <div class="flex items-center justify-between border-b border-white/5 pb-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  <span class="text-xs font-semibold text-white">Kwame (Barber)</span>
+                </div>
+                <span class="text-[10px] font-mono text-slate-400">Brussels</span>
+              </div>
+              <!-- Chat Bubble 1 -->
+              <div class="bg-brand-card text-[11px] text-slate-300 p-2.5 rounded-xl rounded-tl-none border border-white/5">
+                "Got your booking for Friday 18:00! Taper fade & beard shape-up ready."
+              </div>
+              <!-- Status Pill -->
+              <div class="flex items-center justify-between bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 p-2 rounded-xl text-[10px]">
+                <span class="flex items-center gap-1.5 font-medium">
+                  <i data-lucide="calendar-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                  Slot Confirmed
+                </span>
+                <span class="font-mono font-bold">18:00 CEST</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature Bullets -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-white/[0.08] text-xs text-slate-300">
+            <div class="flex items-center gap-2">
+              <i data-lucide="message-square" class="w-4 h-4 text-brand-orange"></i>
+              <span>In-App Chat</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="bell-ring" class="w-4 h-4 text-brand-cyan"></i>
+              <span>Live SMS Alerts</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="calendar" class="w-4 h-4 text-brand-orange"></i>
+              <span>Sync to Calendar</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="lock" class="w-4 h-4 text-emerald-400"></i>
+              <span>Escrow Safe Pay</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 5. INTERACTIVE ARTISAN SHOWCASE (CULTURE IN ACTION)                       -->
+  <!-- ========================================================================= -->
+  <section id="artisan-directory" class="relative z-10 py-16 border-t border-white/[0.06] bg-brand-dark/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-orange uppercase tracking-wider">Meet the Network</span>
+          <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-white mt-1">Verified Craftsmanship in Every City</h2>
+        </div>
+        <p class="text-sm text-slate-400 max-w-md">
+          Explore real artisans preparing to serve Founding Members on launch day.
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-6">
+        <button onclick="filterArtisans('all')" class="artisan-tab px-4 py-2 rounded-xl text-xs font-semibold bg-brand-orange text-white shadow-md shadow-brand-orange/20 transition-all" data-category="all">
+          All Services (6)
+        </button>
+        <button onclick="filterArtisans('cooks')" class="artisan-tab px-4 py-2 rounded-xl text-xs font-semibold bg-brand-card/80 text-slate-300 hover:text-white border border-white/5 transition-all" data-category="cooks">
+          🍳 Cooks & Catering
+        </button>
+        <button onclick="filterArtisans('barbers')" class="artisan-tab px-4 py-2 rounded-xl text-xs font-semibold bg-brand-card/80 text-slate-300 hover:text-white border border-white/5 transition-all" data-category="barbers">
+          💈 Master Barbers
+        </button>
+        <button onclick="filterArtisans('tailors')" class="artisan-tab px-4 py-2 rounded-xl text-xs font-semibold bg-brand-card/80 text-slate-300 hover:text-white border border-white/5 transition-all" data-category="tailors">
+          🪡 Bespoke Tailors
+        </button>
+        <button onclick="filterArtisans('drivers')" class="artisan-tab px-4 py-2 rounded-xl text-xs font-semibold bg-brand-card/80 text-slate-300 hover:text-white border border-white/5 transition-all" data-category="drivers">
+          🚗 Private Drivers
+        </button>
+        <button onclick="filterArtisans('logistics')" class="artisan-tab px-4 py-2 rounded-xl text-xs font-semibold bg-brand-card/80 text-slate-300 hover:text-white border border-white/5 transition-all" data-category="logistics">
+          📦 Logistics & Relocation
+        </button>
+      </div>
+
+      <!-- Artisan Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="artisan-grid">
+
+        <!-- Artisan 1: Chef -->
+        <div class="artisan-item glass-card rounded-2xl p-5 border-brand-teal/20" data-category="cooks">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=140&q=80" alt="Chef Amara" class="w-12 h-12 rounded-full object-cover ring-2 ring-brand-orange/40">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h4 class="font-heading font-bold text-base text-white">Chef Amara K.</h4>
+                <i data-lucide="badge-check" class="w-4 h-4 text-brand-orange fill-brand-orange/20"></i>
+              </div>
+              <p class="text-xs text-slate-400">Paris, France • West African Catering</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 line-clamp-2 mb-3">
+            "Bringing authentic slow-smoked suya, Nigerian party jollof, and egusi soup to dinner parties and private celebrations across Île-de-France."
+          </p>
+          <div class="flex items-center justify-between text-xs pt-3 border-t border-white/5">
+            <span class="text-emerald-400 font-medium">⭐ 4.98 (214 reviews)</span>
+            <span class="font-mono text-brand-cyan">Member: €28/plate</span>
+          </div>
+        </div>
+
+        <!-- Artisan 2: Barber -->
+        <div class="artisan-item glass-card rounded-2xl p-5 border-brand-teal/20" data-category="barbers">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=140&q=80" alt="Barber Kwame" class="w-12 h-12 rounded-full object-cover ring-2 ring-brand-cyan/40">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h4 class="font-heading font-bold text-base text-white">Kwame B.</h4>
+                <i data-lucide="badge-check" class="w-4 h-4 text-brand-cyan fill-brand-cyan/20"></i>
+              </div>
+              <p class="text-xs text-slate-400">Berlin, Germany • Master Fade Specialist</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 line-clamp-2 mb-3">
+            "Over 10 years perfecting drop fades, afro texture treatment, hot towel razor shaves, and sharp hairline enhancements in Kreuzberg."
+          </p>
+          <div class="flex items-center justify-between text-xs pt-3 border-t border-white/5">
+            <span class="text-emerald-400 font-medium">⭐ 4.96 (340 reviews)</span>
+            <span class="font-mono text-brand-cyan">Member: €25/cut</span>
+          </div>
+        </div>
+
+        <!-- Artisan 3: Tailor -->
+        <div class="artisan-item glass-card rounded-2xl p-5 border-brand-teal/20" data-category="tailors">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=140&q=80" alt="Tailor Chidinma" class="w-12 h-12 rounded-full object-cover ring-2 ring-brand-orange/40">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h4 class="font-heading font-bold text-base text-white">Chidinma O.</h4>
+                <i data-lucide="badge-check" class="w-4 h-4 text-brand-orange fill-brand-orange/20"></i>
+              </div>
+              <p class="text-xs text-slate-400">Amsterdam, Netherlands • Bespoke Couturier</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 line-clamp-2 mb-3">
+            "High-fashion African print garments, luxury Agbada embroidery, wedding alterations, and custom modern cuts for diaspora galas."
+          </p>
+          <div class="flex items-center justify-between text-xs pt-3 border-t border-white/5">
+            <span class="text-emerald-400 font-medium">⭐ 4.97 (189 reviews)</span>
+            <span class="font-mono text-brand-cyan">Member: €35/hr</span>
+          </div>
+        </div>
+
+        <!-- Artisan 4: Driver -->
+        <div class="artisan-item glass-card rounded-2xl p-5 border-brand-teal/20" data-category="drivers">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=140&q=80" alt="Driver Tariq" class="w-12 h-12 rounded-full object-cover ring-2 ring-brand-teal/40">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h4 class="font-heading font-bold text-base text-white">Tariq M.</h4>
+                <i data-lucide="badge-check" class="w-4 h-4 text-brand-teal fill-brand-teal/20"></i>
+              </div>
+              <p class="text-xs text-slate-400">Brussels, Belgium • Executive VIP Transport</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 line-clamp-2 mb-3">
+            "Premium discreet airport transfers to Zaventem & Charleroi, inter-city EU diplomatic shuttles, and luxury wedding fleets."
+          </p>
+          <div class="flex items-center justify-between text-xs pt-3 border-t border-white/5">
+            <span class="text-emerald-400 font-medium">⭐ 5.0 (420 rides)</span>
+            <span class="font-mono text-brand-cyan">Flat Airport: €45</span>
+          </div>
+        </div>
+
+        <!-- Artisan 5: Logistics -->
+        <div class="artisan-item glass-card rounded-2xl p-5 border-brand-teal/20" data-category="logistics">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=140&q=80" alt="Logistics Mamadou" class="w-12 h-12 rounded-full object-cover ring-2 ring-brand-orange/40">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h4 class="font-heading font-bold text-base text-white">Mamadou D.</h4>
+                <i data-lucide="badge-check" class="w-4 h-4 text-brand-orange fill-brand-orange/20"></i>
+              </div>
+              <p class="text-xs text-slate-400">Frankfurt, Germany • Cross-Border Cargo Van</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 line-clamp-2 mb-3">
+            "Careful moving vans, furniture delivery, and cross-border transport connecting Germany, France, Belgium and the Netherlands."
+          </p>
+          <div class="flex items-center justify-between text-xs pt-3 border-t border-white/5">
+            <span class="text-emerald-400 font-medium">⭐ 4.93 (156 moves)</span>
+            <span class="font-mono text-brand-cyan">Insured Cargo</span>
+          </div>
+        </div>
+
+        <!-- Artisan 6: Carpenter -->
+        <div class="artisan-item glass-card rounded-2xl p-5 border-brand-teal/20" data-category="carpenters">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=140&q=80" alt="Carpenter Kofi" class="w-12 h-12 rounded-full object-cover ring-2 ring-brand-cyan/40">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h4 class="font-heading font-bold text-base text-white">Kofi A.</h4>
+                <i data-lucide="badge-check" class="w-4 h-4 text-brand-cyan fill-brand-cyan/20"></i>
+              </div>
+              <p class="text-xs text-slate-400">London & Rotterdam • Master Woodcraft</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 line-clamp-2 mb-3">
+            "Custom hardwood shelving, kitchen fitting, modular furniture assembly, and traditional carved ornamental accents."
+          </p>
+          <div class="flex items-center justify-between text-xs pt-3 border-t border-white/5">
+            <span class="text-emerald-400 font-medium">⭐ 4.95 (112 projects)</span>
+            <span class="font-mono text-brand-cyan">Member: €32/hr</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6. FINAL CALL TO ACTION / FOUNDING MEMBER BADGE                          -->
+  <!-- ========================================================================= -->
+  <section class="relative z-10 py-20 overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative rounded-3xl p-8 sm:p-12 lg:p-16 overflow-hidden border border-brand-teal/40 bg-gradient-to-br from-brand-card via-[#061720] to-brand-card shadow-2xl text-center">
+        
+        <!-- Glowing Orbs inside CTA -->
+        <div class="absolute -top-24 -left-24 w-72 h-72 bg-brand-teal/30 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-brand-orange/30 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-2xl mx-auto">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/20 border border-brand-orange/40 text-brand-orange text-xs font-mono font-bold tracking-wider uppercase mb-6">
+            <i data-lucide="crown" class="w-3.5 h-3.5"></i>
+            Founding Member Batch Closing Soon
+          </div>
+          
+          <h2 class="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-4">
+            Claim Your Spot in the <br>
+            <span class="text-gradient-brand">Afro-European Growth Network.</span>
+          </h2>
+
+          <p class="text-slate-300 text-sm sm:text-base mb-8">
+            The first 1,000 members receive permanent Founding Member badges, 30% off subscription pricing for life, and priority booking across all 12 launch cities.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button onclick="scrollToWaitlist()" class="w-full sm:w-auto shimmer-btn btn-glow-orange px-8 py-4 rounded-2xl text-white font-heading font-bold text-base flex items-center justify-center gap-2 cursor-pointer">
+              <span>Join The Waitlist Now</span>
+              <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+            </button>
+            <a href="#bento-section" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 font-semibold text-sm border border-white/10 transition-colors flex items-center justify-center gap-2">
+              <span>Learn More</span>
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <!-- Launch Countdown Timer Ticker -->
+          <div class="mt-10 pt-8 border-t border-white/[0.08] flex items-center justify-center gap-6 sm:gap-10 text-center">
+            <div>
+              <span class="font-heading font-black text-2xl sm:text-3xl text-white" id="countdown-days">10</span>
+              <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Days</span>
+            </div>
+            <span class="text-slate-600 font-bold text-xl">:</span>
+            <div>
+              <span class="font-heading font-black text-2xl sm:text-3xl text-brand-cyan" id="countdown-hours">14</span>
+              <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Hours</span>
+            </div>
+            <span class="text-slate-600 font-bold text-xl">:</span>
+            <div>
+              <span class="font-heading font-black text-2xl sm:text-3xl text-brand-orange" id="countdown-mins">32</span>
+              <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Minutes</span>
+            </div>
+            <span class="text-slate-600 font-bold text-xl">:</span>
+            <div>
+              <span class="font-heading font-black text-2xl sm:text-3xl text-emerald-400" id="countdown-secs">18</span>
+              <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Seconds</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 7. CLEAN FOOTER                                                           -->
+  <!-- ========================================================================= -->
+  <footer class="relative z-10 border-t border-white/[0.08] bg-brand-dark pt-16 pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        
+        <!-- Col 1: Brand Info -->
+        <div class="md:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl overflow-hidden p-0.5 bg-gradient-to-br from-brand-teal to-brand-orange shadow-md bg-brand-dark flex items-center justify-center">
+              <img src="assets/logo.svg" onerror="this.src='assets/logo.jpg'" alt="DiasporaPlug EU Logo" class="w-full h-full object-contain p-0.5">
+            </div>
+            <div class="flex items-center gap-1 leading-none">
+              <span class="font-heading font-extrabold text-xl tracking-tight text-white">DIASPORA</span>
+              <span class="font-heading font-extrabold text-xl tracking-tight text-brand-orange">PLUG</span>
+              <span class="ml-1 text-xs font-mono font-bold px-1.5 py-0.5 rounded bg-brand-teal/30 text-brand-cyan border border-brand-teal/50">EU</span>
+            </div>
+          </div>
+          <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
+            Afro-European Growth Network — Building Europe's premier verified artisan marketplace and subscription service club for the diaspora community.
+          </p>
+          <div class="flex items-center gap-2 text-xs text-slate-400">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>All systems nominal • Launching across 12 EU hubs in 2026</span>
+          </div>
+        </div>
+
+        <!-- Col 2: Services -->
+        <div>
+          <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider mb-4">Artisan Network</h4>
+          <ul class="space-y-2.5 text-xs text-slate-400">
+            <li><button type="button" onclick="scrollToArtisanCategory('cooks')" class="hover:text-brand-orange transition-colors text-left flex items-center gap-1.5 group cursor-pointer"><span class="w-1.5 h-1.5 rounded-full bg-brand-orange/60 group-hover:bg-brand-orange"></span>Cooks & Private Catering</button></li>
+            <li><button type="button" onclick="scrollToArtisanCategory('barbers')" class="hover:text-brand-orange transition-colors text-left flex items-center gap-1.5 group cursor-pointer"><span class="w-1.5 h-1.5 rounded-full bg-brand-cyan/60 group-hover:bg-brand-cyan"></span>Master Afro Barbers</button></li>
+            <li><button type="button" onclick="scrollToArtisanCategory('tailors')" class="hover:text-brand-orange transition-colors text-left flex items-center gap-1.5 group cursor-pointer"><span class="w-1.5 h-1.5 rounded-full bg-brand-orange/60 group-hover:bg-brand-orange"></span>Bespoke Tailors & Kente</button></li>
+            <li><button type="button" onclick="scrollToArtisanCategory('drivers')" class="hover:text-brand-orange transition-colors text-left flex items-center gap-1.5 group cursor-pointer"><span class="w-1.5 h-1.5 rounded-full bg-brand-cyan/60 group-hover:bg-brand-cyan"></span>Private Chauffeurs & Transport</button></li>
+            <li><button type="button" onclick="scrollToArtisanCategory('logistics')" class="hover:text-brand-orange transition-colors text-left flex items-center gap-1.5 group cursor-pointer"><span class="w-1.5 h-1.5 rounded-full bg-brand-orange/60 group-hover:bg-brand-orange"></span>Express Relocation Vans</button></li>
+            <li><button type="button" onclick="scrollToArtisanCategory('carpenters')" class="hover:text-brand-orange transition-colors text-left flex items-center gap-1.5 group cursor-pointer"><span class="w-1.5 h-1.5 rounded-full bg-brand-cyan/60 group-hover:bg-brand-cyan"></span>Skilled Carpentry & Repairs</button></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Artisans & Community -->
+        <div>
+          <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider mb-4">For Artisans</h4>
+          <ul class="space-y-2.5 text-xs text-slate-400">
+            <li><button type="button" onclick="openArtisanModal(event)" class="text-brand-orange font-semibold hover:underline flex items-center gap-1 text-left cursor-pointer">Apply as Verified Artisan <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></button></li>
+            <li><button type="button" onclick="scrollToBentoCard('bento-kyc')" class="hover:text-brand-orange transition-colors text-left flex items-center gap-1.5 cursor-pointer"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>KYC Verification Standards</button></li>
+            <li><button type="button" onclick="scrollToBentoCard('bento-subscription')" class="hover:text-brand-orange transition-colors text-left flex items-center gap-1.5 cursor-pointer"><i data-lucide="lock" class="w-3.5 h-3.5 text-brand-orange"></i>Fair Pay & Escrow Protection</button></li>
+            <li><button type="button" onclick="scrollToBentoCard('bento-eu')" class="hover:text-brand-orange transition-colors text-left flex items-center gap-1.5 cursor-pointer"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-cyan"></i>Active EU Launch Cities</button></li>
+            <li><button type="button" onclick="openCommunityModal(event)" class="hover:text-brand-orange transition-colors text-left flex items-center gap-1.5 cursor-pointer"><i data-lucide="heart-handshake" class="w-3.5 h-3.5 text-pink-400"></i>EU Community Guidelines</button></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        
+        <p>© 2026 DiasporaPlug. All rights reserved.</p>
+
+        <!-- Social Media Verified Actions -->
+        <div class="flex items-center gap-3">
+          <button type="button" onclick="openSocialModal('Instagram', event)" class="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-brand-orange/20 hover:text-brand-orange flex items-center justify-center transition-colors text-slate-300 cursor-pointer" title="Instagram @DiasporaPlugEU">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </button>
+          <a href="https://twitter.com/intent/tweet?text=Excited%20for%20the%20launch%20of%20%40DiasporaPlug%20EU%20%F0%9F%8C%8D%20Verified%20Afro-European%20artisans%20in%20one%20subscription%3A&url=https%3A%2F%2Fdiasporaplug.eu" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-brand-orange/20 hover:text-brand-orange flex items-center justify-center transition-colors text-slate-300" title="Share on Twitter / X">
+            <i data-lucide="twitter" class="w-4 h-4"></i>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdiasporaplug.eu" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-brand-orange/20 hover:text-brand-orange flex items-center justify-center transition-colors text-slate-300" title="Share on LinkedIn">
+            <i data-lucide="linkedin" class="w-4 h-4"></i>
+          </a>
+          <button type="button" onclick="openSocialModal('TikTok', event)" class="w-8 h-8 rounded-full bg-white/[0.05] hover:bg-brand-orange/20 hover:text-brand-orange flex items-center justify-center transition-colors text-slate-300 cursor-pointer" title="TikTok @DiasporaPlugEU">
+            <i data-lucide="video" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <a href="privacy.html" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
+          <span class="text-slate-700">•</span>
+          <a href="terms.html" class="hover:text-brand-orange transition-colors">Terms of Service</a>
+          <span class="text-slate-700">•</span>
+          <a href="cookies.html" onclick="openCookieModal(event)" class="hover:text-brand-orange transition-colors cursor-pointer">Cookie Preferences</a>
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 8. INTERACTIVE WAITLIST SUCCESS MODAL / VIP TICKET PASS                   -->
+  <!-- ========================================================================= -->
+  <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-dark/85 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-400">
+    <div id="modal-card" class="relative w-full max-w-lg glass-panel rounded-3xl p-6 sm:p-8 border border-brand-orange/40 shadow-2xl scale-95 transition-all duration-400 text-center overflow-hidden">
+      
+      <!-- Glowing Background Accent -->
+      <div class="absolute -top-20 -right-20 w-60 h-60 bg-brand-orange/30 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-brand-teal/30 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Close Button -->
+      <button onclick="closeSuccessModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-slate-300 flex items-center justify-center transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- VIP Member Ticket Graphic -->
+      <div class="relative z-10">
+        
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-orange to-amber-500 text-white shadow-xl shadow-brand-orange/40 mb-4 animate-bounce">
+          <i data-lucide="ticket" class="w-8 h-8"></i>
+        </div>
+
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-mono font-bold uppercase tracking-wider mb-2 border border-emerald-500/30">
+          <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Registration Confirmed
+        </div>
+
+        <h3 class="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight mb-1">
+          You're on the list!
+        </h3>
+        
+        <p class="text-xs sm:text-sm text-slate-300 mb-6">
+          We'll notify you before our official launch. Check your inbox shortly for your verification badge.
+        </p>
+
+        <!-- Simulated Waitlist Position Counter Ticket -->
+        <div class="bg-brand-dark/90 rounded-2xl p-4 sm:p-5 border border-brand-teal/40 shadow-inner mb-6 relative">
+          <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
+            <div class="text-left">
+              <span class="text-[10px] font-mono uppercase text-slate-400">Waitlist Position</span>
+              <div class="font-heading font-black text-2xl sm:text-3xl text-gradient-orange flex items-center gap-2">
+                <span id="confirmed-position">#412</span>
+                <span class="text-xs font-mono text-emerald-400 font-normal bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">Top 5%</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] font-mono uppercase text-slate-400">Launch Tier</span>
+              <div class="text-sm font-bold text-brand-cyan">Founding Member</div>
+              <span class="text-[10px] font-mono text-slate-400">30% Off First 3 Mo.</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-slate-300">
+            <span class="text-slate-400">Registered Email:</span>
+            <span class="font-mono font-semibold text-white truncate max-w-[200px]" id="confirmed-email">user@example.com</span>
+          </div>
+        </div>
+
+        <!-- Referral Fast-Track Box -->
+        <div class="text-left bg-white/[0.03] p-4 rounded-2xl border border-white/5 mb-6">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-semibold text-white flex items-center gap-1.5">
+              <i data-lucide="zap" class="w-3.5 h-3.5 text-brand-orange"></i>
+              Jump 25 Spots Ahead
+            </span>
+            <span class="text-[10px] font-mono text-slate-400">Fast-Track Pass</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-3">
+            Invite fellow diaspora friends. For every 2 sign-ups via your custom link, you leap forward 25 spots.
+          </p>
+          <div class="flex items-center gap-2">
+            <input 
+              type="text" 
+              readonly 
+              id="referral-link" 
+              value="https://diasporaplug.eu/join?ref=DP-412"
+              class="w-full bg-brand-dark/80 text-xs font-mono text-slate-300 px-3 py-2.5 rounded-xl border border-white/10 select-all"
+            >
+            <button onclick="copyReferralLink()" id="copy-btn" class="px-4 py-2.5 rounded-xl bg-brand-teal hover:bg-brand-teal-light text-white text-xs font-semibold transition-all whitespace-nowrap flex items-center gap-1">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span id="copy-text">Copy</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Social Share CTAs -->
+        <div class="flex items-center justify-center gap-3">
+          <button onclick="shareOnWhatsApp()" class="flex-1 py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span>WhatsApp</span>
+          </button>
+          <button onclick="shareOnTwitter()" class="flex-1 py-2.5 px-4 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors">
+            <i data-lucide="twitter" class="w-4 h-4"></i>
+            <span>Share on X</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 9. ARTISAN APPLICATION MODAL                                              -->
+  <!-- ========================================================================= -->
+  <div id="artisan-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-dark/85 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
+    <div class="relative w-full max-w-md glass-panel rounded-3xl p-6 sm:p-8 border border-brand-teal/40 shadow-2xl text-center">
+      <button onclick="closeArtisanModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-slate-300 flex items-center justify-center">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="w-12 h-12 rounded-2xl bg-brand-orange/20 text-brand-orange flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="briefcase" class="w-6 h-6"></i>
+      </div>
+
+      <h3 class="font-heading font-bold text-xl text-white mb-2">Apply as a Verified Artisan</h3>
+      <p class="text-xs text-slate-300 mb-6">
+        Are you a skilled chef, barber, tailor, driver, or carpenter in the EU? Join our vetted provider roster and access loyal diaspora clients.
+      </p>
+
+      <form onsubmit="handleArtisanSubmit(event)" class="space-y-3 text-left">
+        <div>
+          <label class="block text-[11px] font-mono text-slate-400 mb-1">Your Full Name</label>
+          <input type="text" required placeholder="e.g. Kwame Mensah" class="w-full bg-brand-dark/80 text-white text-xs px-3.5 py-3 rounded-xl border border-white/10 focus:border-brand-orange focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-[11px] font-mono text-slate-400 mb-1">Your Craft / Trade</label>
+          <select class="w-full bg-brand-dark/80 text-white text-xs px-3 py-3 rounded-xl border border-white/10 focus:border-brand-orange focus:outline-none">
+            <option>Native Cook / Private Chef</option>
+            <option>Master Barber / Hair Stylist</option>
+            <option>Bespoke Tailor / Fashion Designer</option>
+            <option>Private Chauffeur / Driver</option>
+            <option>Express Logistics / Relocation Van</option>
+            <option>Skilled Carpenter / Handyman</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] font-mono text-slate-400 mb-1">EU City & Country</label>
+          <input type="text" required placeholder="e.g. Paris, France" class="w-full bg-brand-dark/80 text-white text-xs px-3.5 py-3 rounded-xl border border-white/10 focus:border-brand-orange focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-[11px] font-mono text-slate-400 mb-1">Phone or WhatsApp</label>
+          <input type="tel" required placeholder="+33 6 12 34 56 78" class="w-full bg-brand-dark/80 text-white text-xs px-3.5 py-3 rounded-xl border border-white/10 focus:border-brand-orange focus:outline-none">
+        </div>
+        
+        <button type="submit" class="w-full shimmer-btn btn-glow-orange py-3.5 rounded-xl text-white font-bold text-xs mt-2">
+          Submit Artisan Application
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="glass-panel px-4 py-3 rounded-2xl border border-emerald-500/40 text-emerald-300 text-xs font-medium flex items-center gap-2 shadow-2xl">
+      <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+      <span id="toast-message">Referral link copied to clipboard!</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 10. EU COMMUNITY GUIDELINES MODAL                                         -->
+  <!-- ========================================================================= -->
+  <div id="community-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-dark/85 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
+    <div class="relative w-full max-w-lg glass-panel rounded-3xl p-6 sm:p-8 border border-pink-500/30 shadow-2xl text-left max-h-[90vh] overflow-y-auto">
+      <button type="button" onclick="closeCommunityModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-slate-300 flex items-center justify-center cursor-pointer">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-2xl bg-pink-500/20 text-pink-400 flex items-center justify-center">
+          <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-xl text-white">EU Community Guidelines</h3>
+          <p class="text-xs text-slate-400">Our code of honor and mutual respect</p>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-xs sm:text-sm text-slate-300">
+        <div class="p-3.5 bg-white/[0.03] rounded-2xl border border-white/5">
+          <strong class="text-white block text-sm mb-1">1. Cultural Authenticity & Dignity</strong>
+          DiasporaPlug exists to honor our heritage. We celebrate diverse culinary, aesthetic, and tailoring traditions while upholding professional European service standards.
+        </div>
+        <div class="p-3.5 bg-white/[0.03] rounded-2xl border border-white/5">
+          <strong class="text-white block text-sm mb-1">2. Mutual Respect & Zero Tolerance</strong>
+          Discrimination, verbal abuse, or harassment—by either client or artisan—results in immediate, permanent banishment from the network without refund.
+        </div>
+        <div class="p-3.5 bg-white/[0.03] rounded-2xl border border-white/5">
+          <strong class="text-white block text-sm mb-1">3. Punctuality & Escrow Integrity</strong>
+          Artisans honor their scheduled slots. Clients honor payment arrangements. Funds remain protected in the Satisfaction Vault until services meet stated specifications.
+        </div>
+        <div class="p-3.5 bg-white/[0.03] rounded-2xl border border-white/5">
+          <strong class="text-white block text-sm mb-1">4. Fair Artisan Compensation</strong>
+          We reject predatory marketplace commission cuts. Artisans earn transparent, dignified livable compensation with zero platform gouging.
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-white/10 text-right">
+        <button type="button" onclick="closeCommunityModal()" class="px-5 py-2.5 rounded-xl bg-brand-orange text-white font-bold text-xs cursor-pointer hover:bg-brand-orange-dark transition-colors">
+          Understood & Agreed
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 11. SOCIAL CHANNELS MODAL                                                 -->
+  <!-- ========================================================================= -->
+  <div id="social-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-dark/85 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
+    <div class="relative w-full max-w-md glass-panel rounded-3xl p-6 sm:p-8 border border-brand-orange/40 shadow-2xl text-center">
+      <button type="button" onclick="closeSocialModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-slate-300 flex items-center justify-center cursor-pointer">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-orange to-pink-500 text-white flex items-center justify-center mx-auto mb-4 shadow-lg shadow-brand-orange/30">
+        <i data-lucide="share-2" class="w-7 h-7"></i>
+      </div>
+
+      <h3 class="font-heading font-bold text-xl text-white mb-1" id="social-modal-title">Connect on Social</h3>
+      <p class="text-xs text-slate-300 mb-6">
+        Follow our Afro-European creator community as we prepare for launch across Paris, Berlin, Amsterdam, Brussels & London.
+      </p>
+
+      <div class="bg-brand-dark/90 p-4 rounded-2xl border border-brand-teal/40 mb-6 text-left">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs text-slate-400 font-mono">Official Handle:</span>
+          <span class="text-xs font-bold text-brand-orange font-mono">@DiasporaPlugEU</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="text" readonly value="@DiasporaPlugEU" id="social-handle-input" class="w-full bg-white/[0.04] text-xs font-mono text-slate-200 px-3 py-2 rounded-xl border border-white/10 select-all">
+          <button type="button" onclick="copySocialHandle()" id="copy-handle-btn" class="px-4 py-2 rounded-xl bg-brand-teal hover:bg-brand-teal-light text-white text-xs font-semibold whitespace-nowrap cursor-pointer">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 text-xs">
+        <a href="https://api.whatsapp.com/send?text=Join%20the%20DiasporaPlug%20EU%20waitlist%20for%20verified%20cooks%2C%20barbers%2C%20tailors%20and%20logistics%3A%20https%3A%2F%2Fdiasporaplug.eu" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium flex items-center justify-center gap-1.5 transition-colors">
+          <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> WhatsApp
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Excited%20for%20the%20launch%20of%20%40DiasporaPlug%20EU%20%F0%9F%8C%8D%20Verified%20Afro-European%20artisans%20in%20one%20subscription%3A&url=https%3A%2F%2Fdiasporaplug.eu" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-medium flex items-center justify-center gap-1.5 transition-colors">
+          <i data-lucide="twitter" class="w-3.5 h-3.5"></i> Share on X
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 12. IN-PAGE COOKIE PREFERENCES MODAL                                      -->
+  <!-- ========================================================================= -->
+  <div id="cookie-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-dark/85 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
+    <div class="relative w-full max-w-lg glass-panel rounded-3xl p-6 sm:p-8 border border-brand-cyan/40 shadow-2xl text-left">
+      <button type="button" onclick="closeCookieModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-slate-300 flex items-center justify-center cursor-pointer">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-2xl bg-brand-cyan/20 text-brand-cyan flex items-center justify-center">
+          <i data-lucide="cookie" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-xl text-white">Cookie Preferences</h3>
+          <p class="text-xs text-slate-400">EU ePrivacy & GDPR Compliant</p>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-300 mb-6">
+        We respect your digital privacy. We only use functional cookies essential for site security and optional anonymized analytics.
+      </p>
+
+      <div class="space-y-3 mb-6">
+        <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+          <div>
+            <span class="font-semibold text-xs text-white block">Strictly Necessary Cookies</span>
+            <span class="text-[11px] text-slate-400">Essential for security and waitlist queue management.</span>
+          </div>
+          <span class="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/30">Always Active</span>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+          <div>
+            <span class="font-semibold text-xs text-white block">Performance & Anonymous Telemetry</span>
+            <span class="text-[11px] text-slate-400">Helps us ensure 60fps animations across all mobile devices.</span>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer shrink-0">
+            <input type="checkbox" id="cookie-analytics-check" checked class="sr-only peer">
+            <div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-orange"></div>
+          </label>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-4 border-t border-white/10">
+        <a href="cookies.html" class="text-xs text-brand-cyan hover:underline">Read Full Policy →</a>
+        <button type="button" onclick="saveInPageCookiePreferences()" class="px-5 py-2.5 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white font-bold text-xs cursor-pointer transition-colors">
+          Save Preferences
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT: ANIMATIONS, GSAP, MICRO-INTERACTIONS, WAITLIST LOGIC          -->
+  <!-- ========================================================================= -->
+  <script>
+    // Initialize Lucide Icons
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      initGSAPAnimations();
+      initSpotlightHoverPhysics();
+      initCountdown();
+      checkExistingWaitlist();
+    });
+
+    // =========================================================================
+    // GSAP ENHANCED ANIMATIONS
+    // =========================================================================
+    function initGSAPAnimations() {
+      // Register GSAP Plugin
+      if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Page Load Staggered Hero Animation
+        const heroTimeline = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.9 } });
+
+        heroTimeline
+          .to("#hero-badge", { opacity: 1, y: 0, duration: 0.6 })
+          .to("#hero-headline", { opacity: 1, y: 0, duration: 0.8 }, "-=0.3")
+          .to("#hero-subheadline", { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
+          .to("#hero-form-container", { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
+          .to("#hero-cards-container", { opacity: 1, y: 0, duration: 1 }, "-=0.4");
+
+        // Bento Grid ScrollTrigger Reveal
+        gsap.utils.toArray('.bento-card').forEach((card, index) => {
+          gsap.from(card, {
+            scrollTrigger: {
+              trigger: card,
+              start: "top 88%",
+              toggleActions: "play none none none"
+            },
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            delay: index * 0.12,
+            ease: "power2.out"
+          });
+        });
+
+        // Artisan items reveal
+        gsap.utils.toArray('.artisan-item').forEach((item, index) => {
+          gsap.from(item, {
+            scrollTrigger: {
+              trigger: item,
+              start: "top 90%",
+              toggleActions: "play none none none"
+            },
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.6,
+            delay: (index % 3) * 0.1,
+            ease: "power2.out"
+          });
+        });
+      }
+    }
+
+    // =========================================================================
+    // SPOTLIGHT MOUSE MOVE PHYSICS (LINEAR / APPLE STYLE)
+    // =========================================================================
+    function initSpotlightHoverPhysics() {
+      const cards = document.querySelectorAll('.spotlight-card');
+      
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+
+          // 3D subtle perspective tilt
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -3;
+          const rotateY = ((x - centerX) / centerX) * 3;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+        });
+      });
+    }
+
+    // =========================================================================
+    // AUDIO SYNTHESIS CHIME (ZERO EXTERNAL AUDIO FILES)
+    // =========================================================================
+    function playCelebrationChime() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6 Harmonious Chord
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + (idx * 0.08));
+          
+          gain.gain.setValueAtTime(0.001, ctx.currentTime + (idx * 0.08));
+          gain.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + (idx * 0.08) + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + (idx * 0.08) + 0.7);
+          
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          
+          osc.start(ctx.currentTime + (idx * 0.08));
+          osc.stop(ctx.currentTime + (idx * 0.08) + 0.75);
+        });
+      } catch (err) {
+        // Audio playback suppressed safely if blocked by browser policy
+      }
+    }
+
+    // =========================================================================
+    // MULTI-COLOR CONFETTI EXPLOSION
+    // =========================================================================
+    function triggerConfettiBurst() {
+      if (typeof confetti === 'function') {
+        // Multi-color palette matched to DiasporaPlug Logo
+        const colors = ['#0E6E85', '#F15A24', '#22d3ee', '#fbbf24', '#ffffff'];
+
+        // Center blast
+        confetti({
+          particleCount: 60,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: colors,
+          disableForReducedMotion: true
+        });
+
+        // Left cannon
+        setTimeout(() => {
+          confetti({
+            particleCount: 45,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0.15, y: 0.75 },
+            colors: colors
+          });
+        }, 180);
+
+        // Right cannon
+        setTimeout(() => {
+          confetti({
+            particleCount: 45,
+            angle: 120,
+            spread: 55,
+            origin: { x: 0.85, y: 0.75 },
+            colors: colors
+          });
+        }, 360);
+      }
+    }
+
+    // =========================================================================
+    // WAITLIST FORM SUBMISSION LOGIC
+    // =========================================================================
+    function handleWaitlistSubmit(event) {
+      event.preventDefault();
+
+      const emailInput = document.getElementById('waitlist-email');
+      const citySelect = document.getElementById('waitlist-city');
+      const errorMsg = document.getElementById('form-error-msg');
+      const submitBtn = document.getElementById('waitlist-submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnIcon = document.getElementById('btn-icon');
+      const btnSpinner = document.getElementById('btn-spinner');
+
+      const email = emailInput.value.trim();
+      const city = citySelect ? citySelect.value : 'Paris';
+
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        errorMsg.classList.remove('hidden');
+        emailInput.classList.add('border-rose-500');
+        emailInput.focus();
+        return;
+      }
+
+      errorMsg.classList.add('hidden');
+      emailInput.classList.remove('border-rose-500');
+
+      // Button Loading State
+      btnText.textContent = "Securing Spot...";
+      btnIcon.classList.add('hidden');
+      btnSpinner.classList.remove('hidden');
+      submitBtn.disabled = true;
+
+      // Real API Submission with Instant Fallback
+      fetch('api/waitlist.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ email: email, city: city })
+      })
+      .then(response => {
+        if (!response.ok) throw new Error('Network response error');
+        return response.json();
+      })
+      .then(data => {
+        // Backend successfully recorded the submission in waitlist.json and waitlist.csv!
+        const spotNumber = data.position || 1429;
+        const referralCode = data.referral_code || ('DP-' + spotNumber);
+
+        localStorage.setItem('diaspora_spot', spotNumber);
+        localStorage.setItem('diaspora_email', email);
+        localStorage.setItem('diaspora_city', city);
+        localStorage.setItem('diaspora_ref', referralCode);
+
+        // Reset Button
+        btnText.textContent = "Join the Waitlist";
+        btnIcon.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+        submitBtn.disabled = false;
+
+        // Trigger Audio Chime & Confetti
+        playCelebrationChime();
+        triggerConfettiBurst();
+
+        // Update Confirmed Modal Details
+        document.getElementById('confirmed-position').textContent = `#${spotNumber}`;
+        document.getElementById('confirmed-email').textContent = email;
+        document.getElementById('referral-link').value = `https://diasporaplug.eu/join?ref=${referralCode}`;
+
+        // Increment Live Waitlist Counter
+        const navCount = document.getElementById('nav-waitlist-count');
+        if (navCount) {
+          navCount.textContent = Number(spotNumber).toLocaleString();
+        }
+
+        openSuccessModal();
+      })
+      .catch(err => {
+        // Graceful Client-side Fallback (for static file:// preview when PHP server is offline)
+        console.warn('API backend offline or opened via file://, persisting to local storage:', err);
+        let spotNumber = localStorage.getItem('diaspora_spot');
+        if (!spotNumber) {
+          spotNumber = 1429;
+          localStorage.setItem('diaspora_spot', spotNumber);
+        }
+        localStorage.setItem('diaspora_email', email);
+        localStorage.setItem('diaspora_city', city);
+
+        // Reset Button
+        btnText.textContent = "Join the Waitlist";
+        btnIcon.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+        submitBtn.disabled = false;
+
+        playCelebrationChime();
+        triggerConfettiBurst();
+
+        document.getElementById('confirmed-position').textContent = `#${spotNumber}`;
+        document.getElementById('confirmed-email').textContent = email;
+        document.getElementById('referral-link').value = `https://diasporaplug.eu/join?ref=DP-${spotNumber}`;
+
+        const navCount = document.getElementById('nav-waitlist-count');
+        if (navCount) {
+          navCount.textContent = (1428 + 1).toLocaleString();
+        }
+
+        openSuccessModal();
+      });
+    }
+
+    // Modal Control Functions
+    function openSuccessModal() {
+      const modal = document.getElementById('success-modal');
+      const card = document.getElementById('modal-card');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeSuccessModal() {
+      const modal = document.getElementById('success-modal');
+      const card = document.getElementById('modal-card');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-100');
+      card.classList.add('scale-95');
+      document.body.style.overflow = '';
+    }
+
+    // Copy Referral Link
+    function copyReferralLink() {
+      const input = document.getElementById('referral-link');
+      input.select();
+      navigator.clipboard.writeText(input.value);
+
+      const copyText = document.getElementById('copy-text');
+      copyText.textContent = "Copied! ✨";
+      showToast("Invite link copied to clipboard!");
+
+      setTimeout(() => {
+        copyText.textContent = "Copy";
+      }, 2500);
+    }
+
+    // Social Share Links
+    function shareOnWhatsApp() {
+      const ref = document.getElementById('referral-link').value;
+      const text = encodeURIComponent(`I just claimed early VIP access to DiasporaPlug EU—the subscription club for verified Afro & Caribbean cooks, barbers, tailors, drivers and logistics across Europe! Grab your spot: ${ref}`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
+    function shareOnTwitter() {
+      const ref = document.getElementById('referral-link').value;
+      const text = encodeURIComponent(`Just joined the waitlist for @DiasporaPlug EU 🌍 Verified native chefs, master barbers, bespoke tailors & logistics in one subscription. Join me: ${ref}`);
+      window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+    }
+
+    // Toast Functionality
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toast-message');
+      msg.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    // Smooth scroll helper
+    function scrollToWaitlist() {
+      const form = document.getElementById('waitlist-section');
+      if (form) {
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+          document.getElementById('waitlist-email').focus();
+        }, 500);
+      }
+    }
+
+    // Artisan Category Filter
+    function filterArtisans(category) {
+      const tabs = document.querySelectorAll('.artisan-tab');
+      tabs.forEach(tab => {
+        if (tab.dataset.category === category) {
+          tab.classList.remove('bg-brand-card/80', 'text-slate-300');
+          tab.classList.add('bg-brand-orange', 'text-white');
+        } else {
+          tab.classList.remove('bg-brand-orange', 'text-white');
+          tab.classList.add('bg-brand-card/80', 'text-slate-300');
+        }
+      });
+
+      const items = document.querySelectorAll('.artisan-item');
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Artisan Application Modal
+    function openArtisanModal(e) {
+      if (e) e.preventDefault();
+      const modal = document.getElementById('artisan-modal');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeArtisanModal() {
+      const modal = document.getElementById('artisan-modal');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function handleArtisanSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const inputs = form.querySelectorAll('input, select');
+      const payload = {
+        name: inputs[0].value.trim(),
+        craft: inputs[1].value.trim(),
+        city: inputs[2].value.trim(),
+        phone: inputs[3].value.trim()
+      };
+
+      fetch('api/artisan-apply.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(res => res.json())
+      .then(data => {
+        closeArtisanModal();
+        showToast("Application received! Ref: " + (data.application_id || 'ART-101'));
+        form.reset();
+      })
+      .catch(() => {
+        closeArtisanModal();
+        showToast("Thank you! Your artisan application was received. We'll reach out via WhatsApp.");
+        form.reset();
+      });
+    }
+
+    // =========================================================================
+    // NEW INTERACTIVE ROUTING & MODAL HANDLERS (ZERO BROKEN LINKS)
+    // =========================================================================
+    // 1. Smooth Scroll & Category Filter Trigger
+    function scrollToArtisanCategory(category) {
+      const section = document.getElementById('artisan-directory');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        filterArtisans(category);
+      }
+    }
+
+    // 2. Smooth Scroll to Bento Cards with Pulse Ring Highlight
+    function scrollToBentoCard(cardId) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('ring-2', 'ring-brand-orange', 'shadow-2xl', 'shadow-brand-orange/30');
+        setTimeout(() => {
+          card.classList.remove('ring-2', 'ring-brand-orange', 'shadow-2xl', 'shadow-brand-orange/30');
+        }, 2200);
+      }
+    }
+
+    // 3. Community Guidelines Modal
+    function openCommunityModal(e) {
+      if (e) e.preventDefault();
+      const modal = document.getElementById('community-modal');
+      if (modal) modal.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeCommunityModal() {
+      const modal = document.getElementById('community-modal');
+      if (modal) modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    // 4. Social Channels Modal
+    function openSocialModal(platform, e) {
+      if (e) e.preventDefault();
+      const modal = document.getElementById('social-modal');
+      const title = document.getElementById('social-modal-title');
+      if (title) title.textContent = `Connect on ${platform || 'Social'}`;
+      if (modal) modal.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeSocialModal() {
+      const modal = document.getElementById('social-modal');
+      if (modal) modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function copySocialHandle() {
+      const input = document.getElementById('social-handle-input');
+      if (input) {
+        input.select();
+        navigator.clipboard.writeText(input.value);
+        const btn = document.getElementById('copy-handle-btn');
+        if (btn) btn.textContent = "Copied! ✨";
+        showToast("Official handle @DiasporaPlugEU copied!");
+        setTimeout(() => {
+          if (btn) btn.textContent = "Copy";
+        }, 2500);
+      }
+    }
+
+    // 5. In-Page Cookie Preferences Modal
+    function openCookieModal(e) {
+      if (e) e.preventDefault();
+      const modal = document.getElementById('cookie-modal');
+      if (modal) modal.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeCookieModal() {
+      const modal = document.getElementById('cookie-modal');
+      if (modal) modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function saveInPageCookiePreferences() {
+      const check = document.getElementById('cookie-analytics-check');
+      localStorage.setItem('diaspora_analytics', check && check.checked ? 'true' : 'false');
+      closeCookieModal();
+      showToast("Cookie preferences saved in your browser!");
+    }
+
+    // Check if user already joined previously
+    function checkExistingWaitlist() {
+      const savedEmail = localStorage.getItem('diaspora_email');
+      const savedSpot = localStorage.getItem('diaspora_spot');
+      if (savedEmail && savedSpot) {
+        // Pre-fill email or show gentle indicator
+        const emailInput = document.getElementById('waitlist-email');
+        if (emailInput && !emailInput.value) {
+          emailInput.value = savedEmail;
+        }
+      }
+    }
+
+    // Launch Countdown Timer Logic
+    function initCountdown() {
+      let days = 10, hours = 14, mins = 32, secs = 18;
+      
+      setInterval(() => {
+        secs--;
+        if (secs < 0) {
+          secs = 59;
+          mins--;
+          if (mins < 0) {
+            mins = 59;
+            hours--;
+            if (hours < 0) {
+              hours = 23;
+              days--;
+            }
+          }
+        }
+
+        const dEl = document.getElementById('countdown-days');
+        const hEl = document.getElementById('countdown-hours');
+        const mEl = document.getElementById('countdown-mins');
+        const sEl = document.getElementById('countdown-secs');
+
+        if (dEl) dEl.textContent = days;
+        if (hEl) hEl.textContent = hours < 10 ? '0' + hours : hours;
+        if (mEl) mEl.textContent = mins < 10 ? '0' + mins : mins;
+        if (sEl) sEl.textContent = secs < 10 ? '0' + secs : secs;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

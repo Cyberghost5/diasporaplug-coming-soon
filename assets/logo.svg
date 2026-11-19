@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <!-- Subtle gradient & glow definitions -->
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#127c94" />
+      <stop offset="100%" stop-color="#095466" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6a33" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Deep Teal Background Circle -->
+  <circle cx="200" cy="200" r="160" fill="url(#tealGrad)" />
+
+  <!-- Inner Globe Mask/Group -->
+  <g id="globe-container">
+    <!-- Inner White/Teal Sea Globe Circle -->
+    <circle cx="200" cy="200" r="124" fill="#0E6E85" />
+    
+    <!-- Europe Continent (White) -->
+    <path d="M 185 110 
+             C 195 105, 215 108, 230 115 
+             C 245 122, 260 135, 252 145 
+             C 245 152, 235 148, 225 155 
+             C 215 160, 205 168, 195 165 
+             C 185 162, 180 152, 172 148 
+             C 165 142, 168 130, 175 122 
+             C 178 118, 180 112, 185 110 Z" 
+          fill="#FFFFFF" />
+          
+    <path d="M 235 125 C 242 120, 255 128, 248 135 C 242 140, 230 132, 235 125 Z" fill="#FFFFFF" opacity="0.95" />
+    <path d="M 190 125 C 196 122, 202 128, 198 132 C 192 135, 188 130, 190 125 Z" fill="#FFFFFF" />
+
+    <!-- Africa Continent (Orange) -->
+    <path d="M 160 158 
+             C 175 155, 205 162, 218 172 
+             C 225 180, 230 195, 228 208 
+             C 225 225, 212 245, 202 258 
+             C 195 268, 188 280, 182 285 
+             C 178 280, 172 260, 170 248 
+             C 165 235, 152 225, 148 210 
+             C 142 192, 145 180, 152 170 
+             C 155 165, 158 160, 160 158 Z" 
+          fill="#F15A24" />
+          
+    <!-- Madagascar Island (Orange) -->
+    <path d="M 235 245 C 238 242, 242 248, 240 258 C 238 265, 232 262, 235 245 Z" fill="#F15A24" />
+  </g>
+
+  <!-- Orange Outer Ring -->
+  <circle cx="200" cy="200" r="132" fill="none" stroke="#F15A24" stroke-width="18" stroke-linecap="round" />
+
+  <!-- Diagonal Growth Arrow / Lightning Bolt (Africa -> Europe -> Upward Right) -->
+  <g id="growth-arrow" filter="url(#subtleShadow)">
+    <!-- Main shaft zig-zag line -->
+    <path d="M 135 272 
+             L 190 200 
+             L 218 226 
+             L 282 132" 
+          fill="none" 
+          stroke="#F15A24" 
+          stroke-width="22" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+
+    <!-- Arrow Head at top right pointing up-right -->
+    <path d="M 252 115 
+             L 305 102 
+             L 292 155 
+             L 278 138 
+             Z" 
+          fill="#F15A24" />
+  </g>
+</svg>
