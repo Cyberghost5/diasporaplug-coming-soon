@@ -42,7 +42,7 @@ An ultra-modern, fully animated, high-conversion **Coming Soon & Waitlist Landin
 
 ### 1. Minimalist Floating Glass Navbar
 - **Brand Identity**: Features the custom scalable SVG emblem and typography (`DIASPORA` in white, `PLUG` in orange, and `EU` in teal badge).
-- **Pulsing Live Status Pill**: Radar ping indicator showing `"Launching Soon Across the EU • Q2 2026"`.
+- **Pulsing Live Status Pill**: Radar ping indicator showing `"Launching Across the EU • Nov 30, 2026"`.
 - **Live Counter**: Real-time ticker preview (`1,428+ joined`).
 - **Quick CTA**: Magnetic `"Join Waitlist"` button that smoothly scrolls to and focuses the email capture field.
 
@@ -90,7 +90,7 @@ An ultra-modern, fully animated, high-conversion **Coming Soon & Waitlist Landin
   - Persists signup data in `localStorage`.
 
 ### 7. Launch Countdown & Clean Footer
-- Live ticker counting down to the beta launch (`48 Days, 14 Hours, 32 Mins, 18 Secs`).
+- Real-time mathematical countdown timer targeting the official Beta Launch on **November 30, 2026**.
 - Provider modal: `"Apply as a Verified Artisan"`.
 - Footer with brand identity, mission tagline, social icons, and copyright (`© 2026 DiasporaPlug. All rights reserved.`).
 

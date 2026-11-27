@@ -295,9 +295,9 @@
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
-          <span class="text-xs font-medium text-slate-300">Launching Soon Across the <span class="text-white font-semibold">EU</span></span>
+          <span class="text-xs font-medium text-slate-300">Launching Across the <span class="text-white font-semibold">EU</span></span>
           <span class="w-1 h-1 rounded-full bg-slate-600"></span>
-          <span class="text-[11px] font-mono text-brand-cyan bg-brand-teal/20 px-2 py-0.5 rounded-full border border-brand-cyan/20">Q2 2026</span>
+          <span class="text-[11px] font-mono text-brand-cyan bg-brand-teal/20 px-2 py-0.5 rounded-full border border-brand-cyan/20">Nov 30, 2026</span>
         </button>
 
         <!-- Right: Action CTA -->
@@ -1178,25 +1178,31 @@
           </div>
 
           <!-- Launch Countdown Timer Ticker -->
-          <div class="mt-10 pt-8 border-t border-white/[0.08] flex items-center justify-center gap-6 sm:gap-10 text-center">
-            <div>
-              <span class="font-heading font-black text-2xl sm:text-3xl text-white" id="countdown-days">10</span>
-              <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Days</span>
+          <div class="mt-10 pt-8 border-t border-white/[0.08]">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-teal/20 text-brand-cyan border border-brand-teal/40 text-xs font-mono font-semibold uppercase tracking-wider mb-5">
+              <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+              <span>Official Beta Launch: November 30, 2026</span>
             </div>
-            <span class="text-slate-600 font-bold text-xl">:</span>
-            <div>
-              <span class="font-heading font-black text-2xl sm:text-3xl text-brand-cyan" id="countdown-hours">14</span>
-              <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Hours</span>
-            </div>
-            <span class="text-slate-600 font-bold text-xl">:</span>
-            <div>
-              <span class="font-heading font-black text-2xl sm:text-3xl text-brand-orange" id="countdown-mins">32</span>
-              <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Minutes</span>
-            </div>
-            <span class="text-slate-600 font-bold text-xl">:</span>
-            <div>
-              <span class="font-heading font-black text-2xl sm:text-3xl text-emerald-400" id="countdown-secs">18</span>
-              <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Seconds</span>
+            <div class="flex items-center justify-center gap-6 sm:gap-10 text-center">
+              <div>
+                <span class="font-heading font-black text-2xl sm:text-3xl text-white" id="countdown-days">02</span>
+                <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Days</span>
+              </div>
+              <span class="text-slate-600 font-bold text-xl">:</span>
+              <div>
+                <span class="font-heading font-black text-2xl sm:text-3xl text-brand-cyan" id="countdown-hours">05</span>
+                <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Hours</span>
+              </div>
+              <span class="text-slate-600 font-bold text-xl">:</span>
+              <div>
+                <span class="font-heading font-black text-2xl sm:text-3xl text-brand-orange" id="countdown-mins">25</span>
+                <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Minutes</span>
+              </div>
+              <span class="text-slate-600 font-bold text-xl">:</span>
+              <div>
+                <span class="font-heading font-black text-2xl sm:text-3xl text-emerald-400" id="countdown-secs">00</span>
+                <span class="block text-[10px] font-mono uppercase text-slate-400 mt-0.5">Seconds</span>
+              </div>
             </div>
           </div>
 
@@ -2105,35 +2111,52 @@
       }
     }
 
-    // Launch Countdown Timer Logic
+    // Launch Countdown Timer Logic (Target Date: November 30, 2026)
     function initCountdown() {
-      let days = 10, hours = 14, mins = 32, secs = 18;
-      
-      setInterval(() => {
-        secs--;
-        if (secs < 0) {
-          secs = 59;
-          mins--;
-          if (mins < 0) {
-            mins = 59;
-            hours--;
-            if (hours < 0) {
-              hours = 23;
-              days--;
-            }
-          }
+      // Exact Target Date: November 30, 2026 at midnight (00:00:00)
+      let targetDate = new Date('2026-11-30T00:00:00');
+      const now = new Date();
+
+      // If November 30, 2026 has already elapsed, gracefully target next year's Nov 30th
+      if (now.getTime() >= targetDate.getTime()) {
+        const nextYear = now.getFullYear();
+        targetDate = new Date(`${nextYear}-11-30T00:00:00`);
+        if (now.getTime() >= targetDate.getTime()) {
+          targetDate = new Date(`${nextYear + 1}-11-30T00:00:00`);
+        }
+      }
+
+      const dEl = document.getElementById('countdown-days');
+      const hEl = document.getElementById('countdown-hours');
+      const mEl = document.getElementById('countdown-mins');
+      const sEl = document.getElementById('countdown-secs');
+
+      function updateCountdown() {
+        const currentTime = new Date().getTime();
+        const difference = targetDate.getTime() - currentTime;
+
+        if (difference <= 0) {
+          if (dEl) dEl.textContent = '00';
+          if (hEl) hEl.textContent = '00';
+          if (mEl) mEl.textContent = '00';
+          if (sEl) sEl.textContent = '00';
+          return;
         }
 
-        const dEl = document.getElementById('countdown-days');
-        const hEl = document.getElementById('countdown-hours');
-        const mEl = document.getElementById('countdown-mins');
-        const sEl = document.getElementById('countdown-secs');
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        if (dEl) dEl.textContent = days;
+        if (dEl) dEl.textContent = days < 10 ? '0' + days : days;
         if (hEl) hEl.textContent = hours < 10 ? '0' + hours : hours;
-        if (mEl) mEl.textContent = mins < 10 ? '0' + mins : mins;
-        if (sEl) sEl.textContent = secs < 10 ? '0' + secs : secs;
-      }, 1000);
+        if (mEl) mEl.textContent = minutes < 10 ? '0' + minutes : minutes;
+        if (sEl) sEl.textContent = seconds < 10 ? '0' + seconds : seconds;
+      }
+
+      // Execute immediately on load to prevent any stale numbers, then tick every 1000ms
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
     }
   </script>
 </body>
